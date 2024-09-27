@@ -1,21 +1,22 @@
 import re
 
-eintraege = []
+eintraege = open('Kontakte.txt', 'w')
 
 def showall():
-    print(eintraege)
+    with open('Kontakte.txt', 'r') as file:
+        print(eintraege.read())
 
-def suche():
-    suche = input("Gib den Namen oder die Telefonnummer zum Suchen ein: ")
-    such_ergebenis = any(item in eintraege for item in eintraege)
-    print(such_ergebenis)
+#def suche():
+#    suche = input("Gib den Namen oder die Telefonnummer zum Suchen ein: ")
+#    such_ergebenis = any(item in eintraege for item in eintraege)
+#    print(such_ergebenis)
     
         
 def eintrag():
     name = input("Name: ")
     number = input("Telefonnummer: ")
-    neuer_eintrag = {'Name': name, 'Telefonnummer': number}
-    eintraege.append(neuer_eintrag)
+    neuer_eintrag = (f"'Name': {name}, 'Telefonnummer': {number}")
+    eintraege.write(f"{neuer_eintrag}")
 
 def adressbuch():
     while True:
