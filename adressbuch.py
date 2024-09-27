@@ -1,20 +1,21 @@
 import re
 
-eintraege = [""]
+eintraege = []
 
 def showall():
     print(eintraege)
 
 def suche():
     suche = input("Gib den Namen oder die Telefonnummer zum Suchen ein: ")
-    suche_ergebnis = re.findall(r'\d+', suche)
-    print(suche_ergebnis)
-
+    such_ergebenis = any(item in eintraege for item in eintraege)
+    print(such_ergebenis)
+    
+        
 def eintrag():
     name = input("Name: ")
     number = input("Telefonnummer: ")
-    combi = name + " " + number
-    eintraege.append(combi)
+    neuer_eintrag = {'Name': name, 'Telefonnummer': number}
+    eintraege.append(neuer_eintrag)
 
 def adressbuch():
     while True:
