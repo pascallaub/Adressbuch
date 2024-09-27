@@ -1,10 +1,26 @@
 import re
+import json
+import os
 
-eintraege = open('Kontakte.txt', 'w')
+eintraege = 'Kontakte.json'
+
+def kontakte_laden():
+    if os.path.exists(eintraege):
+        with open(eintraege, 'r') as file:
+                return json.load(file)
+    return []
+
+def kontakte_speichern(kontakte):
+    with open(eintraege, 'w') as file:
+        json.dump(kontakte, file, indent=4)
 
 def showall():
-    with open('Kontakte.txt', 'r') as file:
-        print(eintraege.read())
+    kontakte = kontakte_laden()
+    if kontakte:
+        for idx, eintrag in enumerate(kontakte, start=1):
+            print(f"{idx}. Name: {eintrag['name']}, Telefonnummer: {eintrag['telefonnummer']}")
+    else:
+        print("Keine Kontakte vorhanden")
 
 #def suche():
 #    suche = input("Gib den Namen oder die Telefonnummer zum Suchen ein: ")
@@ -15,8 +31,11 @@ def showall():
 def eintrag():
     name = input("Name: ")
     number = input("Telefonnummer: ")
-    neuer_eintrag = (f"'Name': {name}, 'Telefonnummer': {number}")
-    eintraege.write(f"{neuer_eintrag}")
+    neuer_eintrag = {'name': name, 'telefonnummer': number}
+    kontakte = kontakte_laden()
+    kontakte.append(neuer_eintrag)
+    kontakte_speichern(kontakte)
+    print("Eintrag erfolgreich!")
 
 def adressbuch():
     while True:
