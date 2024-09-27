@@ -2,5 +2,13 @@
     {
         "name": "Pascal",
         "telefonnummer": "123"
+    },
+    {
+        "name": "Bob",
+        "telefonnummer": "123"
+    },
+    {
+        "name": "Uwe",
+        "telefonnummer": "123"
     }
 ]

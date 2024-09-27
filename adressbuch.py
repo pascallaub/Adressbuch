@@ -22,10 +22,20 @@ def showall():
     else:
         print("Keine Kontakte vorhanden")
 
-#def suche():
-#    suche = input("Gib den Namen oder die Telefonnummer zum Suchen ein: ")
-#    such_ergebenis = any(item in eintraege for item in eintraege)
-#    print(such_ergebenis)
+def suche():
+    suche = input("Gib den Namen oder die Telefonnummer zum Suchen ein: ")
+    
+    kontakte = kontakte_laden()
+    gefundene_kontakte = [
+        kontakt for kontakt in kontakte
+        if suche.lower() in kontakt['name'].lower() or suche in kontakt['telefonnummer']
+    ]
+
+    if gefundene_kontakte:
+        for idx, kontakt in enumerate(gefundene_kontakte, start=1):
+            print(f"{idx}. Name: {kontakt['name']}, Telefonnummer: {kontakt['telefonnummer']}")
+    else:
+        print("Keine Kontakte gefunden!")
     
         
 def eintrag():
