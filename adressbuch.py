@@ -103,6 +103,13 @@ def delete():
         else:
             None
 
+def sort():
+    kontakte = kontakte_laden()
+    sortierte_kontakte = sorted(kontakte, key=lambda x: x['name'].lower())
+    
+    for kontakt in sortierte_kontakte:
+        print(f"Name: {kontakt['name']}, Telefonnummer: {kontakt['telefonnummer']}")
+
 
 def adressbuch():
     while True:
@@ -125,7 +132,8 @@ def adressbuch():
                 delete()
                 continue
             elif auswahl == '6':
-                pass
+                sort()
+                continue
             elif auswahl == '7':
                 break
         except ValueError:
