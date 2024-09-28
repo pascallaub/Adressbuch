@@ -82,6 +82,27 @@ def change():
         else:
             print("Falsche Eingabe!")
 
+def delete():
+    suche = input("Gib den Namen oder die Telefonnummer zum Löschen ein: ")
+
+    kontakte = kontakte_laden()
+    gefundene_kontakte = [
+        kontakt for kontakt in kontakte
+        if suche.lower() in kontakt['name'].lower() or suche in kontakt['telefonnummer']
+    ]
+
+    if gefundene_kontakte:
+        for idx, kontakt in enumerate(gefundene_kontakte, start=1):
+            print(f"{idx}: Name: {kontakt['name']}, Telefonnummer: {kontakt['telefonnummer']}")
+        auswahl = int(input(f"Wähle einen Kontakt (1-{len(gefundene_kontakte)}): "))
+        ausgewählter_kontakt = gefundene_kontakte[auswahl - 1]
+        next = input("Möchtest du diesen Eintrag löschen? j/n: ")
+        if next == 'j':
+            kontakte.remove(ausgewählter_kontakt)
+            kontakte_speichern(kontakte)
+        else:
+            None
+
 
 def adressbuch():
     while True:
@@ -101,7 +122,8 @@ def adressbuch():
                 change()
                 continue
             elif auswahl == '5':
-                pass
+                delete()
+                continue
             elif auswahl == '6':
                 pass
             elif auswahl == '7':
